@@ -44,7 +44,7 @@
      <label>Choix du livre</label>
     <input type="text" id="choix" placeholder="Ex: couverture, résumé, conseillé par...">
     <label>Émotion ressentie</label>
-    <input type="text" id="emotion" placeholder="Ex: joie, tristesse, peur...">
+    <input type="text" id="emotion" placeholder="Ex: joie, tristesse, peur, colère...">
     <label>Note (étoiles)</label>
     <div class="stars" id="stars">
       <span data-value="1">★</span><span data-value="2">★</span><span data-value="3">★</span><span data-value="4">★</span><span data-value="5">★</span>
@@ -53,6 +53,8 @@
     <input type="text" id="qualificatif" placeholder="captivante, drôle, poétique...">
     <label>Avis sur l’écriture</label>
     <input type="text" id="ecriture">
+     <label>Objectif du livre :</label>
+    <input type="text" id="objectif">
     <label>Recommandation</label>
     <input type="text" id="recommandation">
 
@@ -60,52 +62,42 @@
     <label>Avis libre / conclusion</label>
     <textarea id="avisLibre"></textarea>
 
-    <button id="genBtn">Générer la critique</button>
-    <button class="secondary" id="copyBtn">Copier</button>
-  </form>
+    <button type="button" onclick="genererCritique()">Générer</button>
+</form>
 
-  <h2>Aperçu</h2>
-  <div id="preview"></div>
-
-  <div class="consignes">
-    <strong>Consignes pour relire et améliorer ta critique :</strong>
-    <ul>
-      <li>Vérifie l’orthographe et la ponctuation.</li>
-      <li>Assure-toi que le résumé répond à QUI ? QUOI ? OÙ ? QUAND ? POURQUOI ?</li>
-      <li>Explique pourquoi tu as ressenti cette émotion.</li>
-      <li>Sois précis dans tes avis (personnages, style, originalité).</li>
-      <li>Recommande le livre à un public précis (âge, goûts...).</li>
-    </ul>
-  </div>
-</div>
+<h2>Critique générée</h2>
+<div id="resultat"></div>
 
 <script>
-  const $ = id => document.getElementById(id);
-  let note = 0;
-  const stars = document.querySelectorAll('.stars span');
-  stars.forEach(s=>{
-    s.addEventListener('click', ()=>{
-      note = parseInt(s.dataset.value);
-      stars.forEach(st=> st.classList.toggle('active', parseInt(st.dataset.value)<=note));
-    });
-  });
+function genererCritique() {
+    let titre = document.getElementById("titre").value.trim();
+    let type = document.getElementById("type").value;
+    let genre = document.getElementById("genre").value.trim();
+    let auteur = document.getElementById("auteur").value.trim();
+    let editeur = document.getElementById("editeur").value.trim();
+    let theme = document.getElementById("theme").value.trim();
+    let resume = document.getElementById("resume").value.trim();
+    let envie = document.getElementById("envie").value.trim();
+    let emotions = document.getElementById("emotions").value.trim();
+    let etoiles = document.getElementById("etoiles").value;
+    let personnages = document.getElementById("personnages").value.trim();
+    let style = document.getElementById("style").value.trim();
+    let conseil = document.getElementById("conseil").value.trim();
+    let objectif = document.getElementById("objectif").value.trim();
 
-  function buildCritique(){
-    const resume = $('resume').value.trim();
-    let resumeCorrige = resume.charAt(0).toUpperCase() + resume.slice(1);
-    if (!resumeCorrige.endsWith('.')) resumeCorrige += '.';
+    let critique = `J’ai lu "${titre}", un ${type.toLowerCase()} de) genre ${genre}, écrit par ${auteur} et publié par ${editeur}. 
+Ce livre aborde le(s) thème(s) suivant(s) : ${theme}. C'est l'histoire de : ${resume}.
 
-    return `Voici une critique littéraire :\n\n« ${$('titre').value} », écrit par ${$('auteur').value}, est un ${$('type').value.toLowerCase()} ${$('genre').value.toLowerCase()} qui aborde avec finesse le thème de ${$('theme').value.toLowerCase()}. ${resumeCorrige}\n\nCe récit ${$('qualificatif').value} m’a particulièrement marqué par la manière dont il suscite ${$('emotion').value}. L’écriture ${$('ecriture').value} renforce l’impact de l’histoire, offrant au lecteur une immersion complète. Je lui attribue la note de ${note}/5.\n\nEn conclusion, ${$('avisLibre').value} Je recommande ce livre ${$('recommandation').value}.`;
-  }
+J’ai choisi de lire ce livre car ${choix}. Pendant et après ma lecture, j’ai ressenti ${emotions}. 
+Concernant les personnages, ${personnages}. 
+L’objectif de ce livre est ${objectif}.  
+Le style et l’écriture sont ${style}. 
+Je lui attribue la note suivante : ${etoiles}.
+Je conseille ce livre à ${conseil}.`;
 
-  $('genBtn').addEventListener('click', ()=>{
-    $('preview').textContent = buildCritique();
-  });
-
-  $('copyBtn').addEventListener('click', ()=>{
-    navigator.clipboard.writeText(buildCritique());
-    alert('Critique copiée !');
-  });
+    document.getElementById("resultat").textContent = critique;
+}
 </script>
+
 </body>
 </html>
