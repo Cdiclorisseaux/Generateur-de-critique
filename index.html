@@ -30,29 +30,30 @@
     <input type="text" id="titre">
     <label>Auteur</label>
     <input type="text" id="auteur">
-    <label>Editeur</label>
-    <input type="text" id="editeur">
-    <label>Type de livre (Roman BD Album...)</label>
-    <input type="text" id="type">
-    <label>Genre (Aventure Policier Amour Famille Biographie Guerre Science-Fiction...)</label>
-    <input type="text" id="genre">
-    <label>Avis sur le personnage principal</label>
-    <input type="text" id="personnage">
-    <label>Résumé (Qui Quand Où Quoi Comment Pourquoi)</label>
+    <label>Type de livre</label>
+    <input type="text" id="type" placeholder="Ex: roman, album, BD...">
+    <label>Genre</label>
+    <input type="text" id="genre" placeholder="Ex: Aventure, policier, guerre, biographie, Science-fiction...">
+    <label>Résumé (1-2 phrases)</label>
     <textarea id="resume"></textarea>
+    <label>Personnage principal</label>
+    <input type="text" id="personnage">
+    
 
     <h2>II. Avis argumenté</h2>
+     <label>Choix du livre</label>
+    <input type="text" id="choix" placeholder="Ex: couverture, résumé, conseillé par...">
     <label>Émotion ressentie</label>
-    <input type="text" id="emotion" placeholder="Ex: joie, tristesse...">
+    <input type="text" id="emotion" placeholder="Ex: joie, tristesse, peur...">
     <label>Note (étoiles)</label>
     <div class="stars" id="stars">
       <span data-value="1">★</span><span data-value="2">★</span><span data-value="3">★</span><span data-value="4">★</span><span data-value="5">★</span>
     </div>
     <label>Qualificatif de l’histoire</label>
-    <input type="text" id="qualificatif" placeholder="captivante, drôle...">
+    <input type="text" id="qualificatif" placeholder="captivante, drôle, poétique...">
     <label>Avis sur l’écriture</label>
     <input type="text" id="ecriture">
-    <label>A qui recommander ce livre</label>
+    <label>Recommandation</label>
     <input type="text" id="recommandation">
 
     <h2>III. Personnalisation</h2>
@@ -90,7 +91,11 @@
   });
 
   function buildCritique(){
-    return `Voici une critique littéraire :\n\n"${$('titre').value}", écrit par ${$('auteur').value}, est un ${$('type').value.toLowerCase()} ${$('genre').value.toLowerCase()} qui aborde avec finesse le thème de ${$('theme').value.toLowerCase()}. ${$('resume').value}\n\nCe récit ${$('qualificatif').value} m’a particulièrement marqué par la manière dont il suscite ${$('emotion').value}. L’écriture ${$('ecriture').value} renforce l’impact de l’histoire, offrant au lecteur une immersion complète. Je lui attribue la note de ${note}/5.\n\nEn conclusion, ${$('avisLibre').value} Je recommande ce livre ${$('recommandation').value}.`;
+    const resume = $('resume').value.trim();
+    let resumeCorrige = resume.charAt(0).toUpperCase() + resume.slice(1);
+    if (!resumeCorrige.endsWith('.')) resumeCorrige += '.';
+
+    return `Voici une critique littéraire :\n\n« ${$('titre').value} », écrit par ${$('auteur').value}, est un ${$('type').value.toLowerCase()} ${$('genre').value.toLowerCase()} qui aborde avec finesse le thème de ${$('theme').value.toLowerCase()}. ${resumeCorrige}\n\nCe récit ${$('qualificatif').value} m’a particulièrement marqué par la manière dont il suscite ${$('emotion').value}. L’écriture ${$('ecriture').value} renforce l’impact de l’histoire, offrant au lecteur une immersion complète. Je lui attribue la note de ${note}/5.\n\nEn conclusion, ${$('avisLibre').value} Je recommande ce livre ${$('recommandation').value}.`;
   }
 
   $('genBtn').addEventListener('click', ()=>{
