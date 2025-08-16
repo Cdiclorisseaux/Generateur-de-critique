@@ -54,7 +54,7 @@
     <input type="text" id="personnage">
 
     <h2>II. Avis argumenté</h2>
-    <label>Ce qui m'a donné envie de lire :</label>
+    <label>J'ai choisi ce livre parce que...</label>
     <input type="text" id="choix" placeholder="Ex: couverture, résumé, conseillé par...">
     <label>En lisant ce livre, j'ai ressenti de...</label>
     <input type="text" id="emotion" placeholder="Ex: la joie, la tristesse, la peur, la colère, l'amusement...">
@@ -62,8 +62,8 @@
     <div class="stars" id="stars">
       <span data-value="1">★</span><span data-value="2">★</span><span data-value="3">★</span><span data-value="4">★</span><span data-value="5">★</span>
     </div>
-    <label>Qualificatif de l’histoire</label>
-    <input type="text" id="qualificatif" placeholder="captivante, drôle, poétique...">
+    <label>L’histoire est...</label>
+    <input type="text" id="qualificatif" placeholder="captivante, drôle, amusante, captivante, poétique, décevante...">
     <label>Avis sur l’écriture</label>
     <input type="text" id="ecriture" placeholder="facile à lire, fluide, le vocabulaire est compliqué, écrit à la première personne...">
     <label>L'objectif du livre est de...</label>
@@ -71,9 +71,10 @@
     <label>Je recommande ce livre à...</label>
     <input type="text" id="recommandation">
 
-    <h2>III. Personnalisation</h2>
-    <label>Avis libre / conclusion</label>
-    <textarea id="avisLibre"></textarea>
+    <h2>III. Conclusion</h2>
+    <label>1-2 phrases pour donner un avis général sur le livre / conclusion</label>
+    <textarea id="avisLibre" placeholder="A lire absolument, à ne pas rater, qui se lit d'une traite,
+qu'on ne peut pas lâcher......"></textarea>
 
     <button id="generer">Générer</button>
   </form>
