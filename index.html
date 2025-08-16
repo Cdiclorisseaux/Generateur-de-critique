@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+r<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -46,8 +46,10 @@
     <input type="text" id="editeur">
     <label>Nature du livre</label>
     <input type="text" id="type" placeholder="Ex: roman, album, BD...">
-    <label>Thème principal</label>
+    <label>Genre</label>
     <input type="text" id="genre" placeholder="Ex: Aventure, policier, guerre, Science fiction...">
+     <label>Thème principal</label>
+    <input type="text" id="Theme" placeholder="Ex: amitié, amour, harcèlement, secret, handicap, famille, réseaux...">
     <label>Résumé en 1-2 phrases en faisant le QQCOQP</label>
     <textarea id="resume"></textarea>
     <label>Prénom du personnage principal. 1-2 phrases pour le décrire</label>
@@ -112,7 +114,7 @@ qu'on ne peut pas lâcher......"></textarea>
       let avisLibre = document.getElementById('avisLibre').value;
 
       let critique = `J’ai lu "${titre}" écrit par ${auteur} et publié chez ${editeur}. 
-C’est un ${type} appartenant au genre ${genre}. L’histoire met en avant le personnage de ${personnage}. 
+Ce livre ${type} appartient au genre ${genre} et le thème principal est ${theme}. L’histoire met en avant le personnage de ${personnage}. 
 Voici un résumé : ${resume}.
 
 J’ai choisi ce livre parce que ${choix}. Pendant ma lecture, j’ai ressenti ${emotion}. 
